@@ -1,7 +1,14 @@
+import NotesView from './NotesView.js';
 import NotesAPI from './NotesAPI.js';
 
-NotesAPI.saveNote({
-    title: "New note",
-    body: "I am new note."
+
+const app = document.getElementById("app");
+const view = new NotesView(app , {
+    onNoteEdit(newTitle, newBody){
+        console.log("Note edited");
+        console.log(newTitle);
+        console.log(newBody);
+    },
 });
-console.log(NotesAPI.getAllNotes());
+
+view.updateNoteList(NotesAPI.getAllNotes());
